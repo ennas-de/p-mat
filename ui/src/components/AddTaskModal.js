@@ -19,7 +19,9 @@ const AddTaskModal = ({
   useEffect(() => {
     if (edit && isAddTaskModalOpen) {
       axios
-        .get(`http://localhost:9000/project/${projectId}/task/${taskId}`)
+        .get(
+          `https://p-mat-server.onrender.com/project/${projectId}/task/${taskId}`
+        )
         .then((res) => {
           setTitle(res.data[0].task[0].title);
           setDesc(res.data[0].task[0].description);
@@ -35,7 +37,7 @@ const AddTaskModal = ({
     e.preventDefault();
     if (!edit) {
       axios
-        .post(`http://localhost:9000/project/${projectId}/task`, {
+        .post(`https://p-mat-server.onrender.com/project/${projectId}/task`, {
           title,
           description: desc,
         })
@@ -54,10 +56,13 @@ const AddTaskModal = ({
         });
     } else {
       axios
-        .put(`http://localhost:9000/project/${projectId}/task/${taskId}`, {
-          title,
-          description: desc,
-        })
+        .put(
+          `https://p-mat-server.onrender.com/project/${projectId}/task/${taskId}`,
+          {
+            title,
+            description: desc,
+          }
+        )
         .then((res) => {
           setAddTaskModal(false);
           toast.success("Task is updated");

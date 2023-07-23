@@ -17,7 +17,7 @@ const AddProjectModal = ({
   useEffect(() => {
     if (edit && isModalOpen) {
       axios
-        .get(`http://localhost:9000/project/${id}`)
+        .get(`https://p-mat-server.onrender.com/project/${id}`)
         .then((res) => {
           setTitle(res.data[0].title);
           setDesc(res.data[0].description);
@@ -32,7 +32,10 @@ const AddProjectModal = ({
     e.preventDefault();
     if (!edit) {
       axios
-        .post("http://localhost:9000/project/", { title, description: desc })
+        .post("https://p-mat-server.onrender.com/project/", {
+          title,
+          description: desc,
+        })
         .then((res) => {
           closeModal();
           const customEvent = new CustomEvent("projectUpdate", {
@@ -52,7 +55,7 @@ const AddProjectModal = ({
         });
     } else {
       axios
-        .put(`http://localhost:9000/project/${id}`, {
+        .put(`https://p-mat-server.onrender.com/project/${id}`, {
           title,
           description: desc,
         })

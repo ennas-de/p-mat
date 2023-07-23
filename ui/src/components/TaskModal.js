@@ -16,7 +16,9 @@ const TaskModal = ({ isOpen, setIsOpen, id }) => {
   useEffect(() => {
     if (isOpen) {
       axios
-        .get(`http://localhost:9000/project/${id.projectId}/task/${id.id}`)
+        .get(
+          `https://p-mat-server.onrender.com/project/${id.projectId}/task/${id.id}`
+        )
         .then((data) => {
           setTaskData({ ...data.data[0].task[0] });
           // console.log(taskData);
